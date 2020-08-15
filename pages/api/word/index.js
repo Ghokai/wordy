@@ -18,7 +18,7 @@ handler.get(async (req, res) => {
 const delay = async (ms) => await new Promise((res) => setTimeout(res, ms));
 
 handler.post(async (req, res) => {
-  await delay(3000);
+  await delay(2000);
   const { word, turkish } = req.body;
   if (!word || !turkish || !word.trim() || !turkish.trim()) {
     res.status(400);

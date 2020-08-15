@@ -1,0 +1,25 @@
+.container {
+  min-height: 100vh;
+  padding: 2rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.wordTable tr:nth-child(2n) {
+  background-color: lightgray;
+}
+
+.wordTable tr td {
+  border: 1px solid;
+}
+
+.wordTable tr.wordLoading td {
+  color: #808080;
+  font-style: italic;
+}
+
+.wordTable tr td input {
+  background-color: lemonchiffon;
+}
