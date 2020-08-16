@@ -1,10 +1,10 @@
 import { useState } from "react";
-import useSaveWord from "../reactQuery/useSaveWord";
+import useCreateWord from "../reactQuery/useCreateWord";
 
 const initialWord = { word: "", turkish: "" };
 const WordForm = () => {
   const [word, setWord] = useState({ ...initialWord });
-  const [mutate, { isLoading, error }] = useSaveWord();
+  const [mutate, { isLoading, error }] = useCreateWord();
 
   const onChangeHandler = (e) => {
     setWord({ ...word, [e.target.name]: e.target.value });
@@ -24,29 +24,29 @@ const WordForm = () => {
   };
 
   return (
-    <div>
-      <div>
+    <tr>
+      <td>
         <input
           type="text"
           value={word.word}
           name="word"
           onChange={onChangeHandler}
         />
-      </div>
-      <div>
+      </td>
+      <td>
         <input
           type="text"
           value={word.turkish}
           name="turkish"
           onChange={onChangeHandler}
         />
-      </div>
-      <div>
+      </td>
+      <td colSpan="2">
         <button disabled={isLoading} onClick={saveHandler}>
-          {isLoading ? "Saving..." : "Save"}
+          {isLoading ? "Adding..." : "Add"}
         </button>
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 };
 

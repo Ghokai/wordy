@@ -1,4 +1,5 @@
 import { useState } from "react";
+import WordForm from "./WordForm";
 import useWords from "../reactQuery/useWords";
 import useDeleteWord from "../reactQuery/useDeleteWord";
 import useUpdateWord from "../reactQuery/useUpdateWord";
@@ -41,7 +42,7 @@ const WordListItem = ({ word }) => {
             onChange={onChangeHandler}
           />
         ) : (
-          wordState.word
+          <span>{wordState.word}</span>
         )}
       </td>
       <td>
@@ -52,13 +53,18 @@ const WordListItem = ({ word }) => {
             onChange={onChangeHandler}
           />
         ) : (
-          wordState.turkish
+          <span>{wordState.turkish}</span>
         )}
       </td>
       <td>
         {editMode && <button onClick={updateHandler}>Update</button>}
         {!editMode && wordState._id !== "" && (
-          <button onClick={() => setEditMode(true)}>Edit</button>
+          <button
+            className={styles.editButton}
+            onClick={() => setEditMode(true)}
+          >
+            Edit
+          </button>
         )}
       </td>
       <td>
@@ -79,12 +85,13 @@ const WordListItem = ({ word }) => {
 const WordList = () => {
   const { isLoading, error, data } = useWords();
   return isLoading ? (
-    <div>loading</div>
+    <div>Loading...</div>
   ) : error ? (
     <div>Error!</div>
   ) : (
     <table className={styles.wordTable}>
       <tbody>
+        <WordForm />
         {data.map((w) => (
           <WordListItem key={w._id} word={w} />
         ))}

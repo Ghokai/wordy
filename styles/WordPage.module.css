@@ -23,3 +23,41 @@
 .wordTable tr td input {
   background-color: lemonchiffon;
 }
+
+.wordTable button {
+  width: 100%;
+}
+
+.wordTable span,
+.wordTable input,
+.wordTable button {
+  font-size: 16px;
+}
+
+.editButton {
+  width: 68px !important;
+}
+
+@keyframes loader-animation {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    left: 0%;
+    width: 100%;
+  }
+}
+.loader {
+  height: 5px;
+  width: 100%;
+}
+.loader .bar {
+  position: relative;
+  height: 3px;
+  background-color: red;
+  animation-name: loader-animation;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}

@@ -1,6 +1,6 @@
 import { useMutation, queryCache } from "react-query";
 
-const useSaveWord = () => {
+const useCreateWord = () => {
   return useMutation(
     async (word) => {
       const res = await fetch("/api/word", {
@@ -57,4 +57,4 @@ const useSaveWord = () => {
   );
 };
 
-export default useSaveWord;
+export default useCreateWord;
