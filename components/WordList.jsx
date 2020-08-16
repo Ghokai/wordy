@@ -82,7 +82,23 @@ const WordListItem = ({ word }) => {
   );
 };
 
+const WordFilter = ({ filterValue, onFilterChange }) => {
+  return (
+    <tr>
+      <td colSpan="4">
+        <input
+          className={styles.search}
+          value={filterValue}
+          onChange={(e) => onFilterChange(e.target.value)}
+          placeholder="Search..."
+        />
+      </td>
+    </tr>
+  );
+};
+
 const WordList = () => {
+  const [filterKey, setFilterKey] = useState("");
   const { isLoading, error, data } = useWords();
   return isLoading ? (
     <div>Loading...</div>
@@ -92,9 +108,17 @@ const WordList = () => {
     <table className={styles.wordTable}>
       <tbody>
         <WordForm />
-        {data.map((w) => (
-          <WordListItem key={w._id} word={w} />
-        ))}
+        <WordFilter onFilterChange={setFilterKey} />
+        {data
+          .filter(
+            (w) =>
+              !filterKey ||
+              w.word.includes(filterKey) ||
+              w.turkish.includes(filterKey)
+          )
+          .map((w) => (
+            <WordListItem key={w._id} word={w} />
+          ))}
       </tbody>
     </table>
   );

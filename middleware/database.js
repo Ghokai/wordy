@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import nextConnect from "next-connect";
 
 const client = new MongoClient(
-  "mongodb+srv://admin:wordyappx1@cluster0.dzea5.mongodb.net",
+  process.env.MONGODB,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

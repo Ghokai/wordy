@@ -31,6 +31,7 @@ const WordForm = () => {
           value={word.word}
           name="word"
           onChange={onChangeHandler}
+          placeholder="Word"
         />
       </td>
       <td>
@@ -39,6 +40,7 @@ const WordForm = () => {
           value={word.turkish}
           name="turkish"
           onChange={onChangeHandler}
+          placeholder="Meaning"
         />
       </td>
       <td colSpan="2">
