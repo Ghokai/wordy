@@ -1,0 +1,28 @@
+.questionWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.questionItem {
+  margin-top: 10rem;
+}
+
+.questionItem ul {
+  margin-left: -1rem;
+}
+
+.questionItem ul li {
+  list-style: none;
+  border: 1px solid;
+  padding: 0.5rem 2rem;
+  margin-top: 0.2rem;
+}
+
+.correct {
+  background-color: lightgreen;
+}
+.wrong {
+  background-color: palevioletred;
+}

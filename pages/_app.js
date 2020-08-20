@@ -4,6 +4,7 @@ import {
   ReactQueryConfigProvider,
   makeQueryCache,
 } from "react-query";
+import Header from "../components/Header";
 
 const queryCache = makeQueryCache();
 
@@ -13,6 +14,7 @@ function MyApp({ Component, pageProps }) {
     <ReactQueryConfigProvider
       config={{ queries: { refetchOnWindowFocus: false } }}
     >
+      <Header />
       <Component {...pageProps} />
     </ReactQueryConfigProvider>
     // </ReactQueryCacheProvider>
