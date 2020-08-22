@@ -1,8 +1,6 @@
 import nextConnect from "next-connect";
 import middleware from "../../../middleware/database";
 
-
-  
 // This is an example of to protect an API route
 // import { getSession } from 'next-auth/client'
 
@@ -21,7 +19,6 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.get(async (req, res) => {
-  console.log("FETCHING WORDS");
   let doc = await req.db
     .collection("dictionary")
     .find()
@@ -33,7 +30,6 @@ handler.get(async (req, res) => {
 const delay = async (ms) => await new Promise((res) => setTimeout(res, ms));
 
 handler.post(async (req, res) => {
-  await delay(2000);
   const { word, turkish } = req.body;
   if (!word || !turkish || !word.trim() || !turkish.trim()) {
     res.status(400);
