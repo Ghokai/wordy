@@ -4,7 +4,7 @@ import useQuestion from "../../reactQuery/useQuestion";
 
 export default function Index() {
   const { isLoading, data } = useQuestion();
-
+  //isFetching
   return (
     <div className={styles.questionWrapper}>
       {isLoading && <div>Question Retrieving...</div>}
