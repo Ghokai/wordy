@@ -34,11 +34,6 @@ export default function Header() {
         )}
         {session && (
           <>
-            <span className={styles.mail}>
-              <u>
-                <i>{session.user.email}</i>
-              </u>
-            </span>
             <span className={styles.btn} onClick={signOut}>
               Sign Out
             </span>

@@ -101,7 +101,7 @@ const WordList = () => {
   const [filterKey, setFilterKey] = useState("");
   const { isLoading, error, data } = useWords();
   return isLoading ? (
-    <div>Loading...</div>
+    <div>...</div>
   ) : error ? (
     <div>Error!</div>
   ) : (
