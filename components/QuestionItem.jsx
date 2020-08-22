@@ -19,6 +19,7 @@ const QuestionItem = ({ question }) => {
         <ul>
           {question.options.map((o) => (
             <li
+              key={o.id}
               onClick={() => setSelection(o.id)}
               className={
                 selection === question.answer && selection === o.id

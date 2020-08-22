@@ -10,8 +10,6 @@ const WordForm = () => {
     setWord({ ...word, [e.target.name]: e.target.value });
   };
 
-  console.log(error);
-
   const saveHandler = async () => {
     console.log(word);
     try {
