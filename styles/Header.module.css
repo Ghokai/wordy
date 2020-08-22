@@ -5,5 +5,29 @@
   height: 50px;
   align-items: center;
   color: #fff;
-  padding: 0 20px;
+  padding: 2rem 4rem;
+  justify-content: space-between;
+}
+
+.header ul {
+  list-style: none;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.header ul li {
+  margin-right: 1rem;
+}
+
+.brand {
+  font-size: 24px;
+}
+
+.rightHeader .btn {
+  cursor: pointer;
+}
+
+.mail {
+  margin-right: 1rem;
 }
