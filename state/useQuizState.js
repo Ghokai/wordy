@@ -1,6 +1,6 @@
 import create from "zustand";
 
- const useQuizState = create((set) => ({
+const useQuizState = create((set) => ({
   successful: 0,
   failed: 0,
   questionAnswered: () =>
@@ -8,4 +8,4 @@ import create from "zustand";
   questionNotAnswered: () => set((state) => ({ failed: state.failed + 1 })),
 }));
 
-export default useQuizState
+export default useQuizState;

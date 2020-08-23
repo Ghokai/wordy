@@ -58,3 +58,17 @@
 .failed {
   color: red;
 }
+
+.questionFeed {
+  position: absolute;
+  right: 2rem;
+}
+
+.questionFeed ul {
+  list-style: none;
+}
+
+.questionFeed ul li {
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid gray;
+}
