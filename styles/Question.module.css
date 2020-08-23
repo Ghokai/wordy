@@ -43,3 +43,18 @@
   background-color: lightskyblue;
   cursor: pointer;
 }
+
+.quizScore {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.successful {
+  color: green;
+  margin-right: 1rem;
+}
+.failed {
+  color: red;
+}
