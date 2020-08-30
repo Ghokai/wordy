@@ -2,5 +2,5 @@
 // mongodb+srv://admin:wordyappx1@cluster0.dzea5.mongodb.net/<dbname>?retryWrites=true&w=majority
 export default (req, res) => {
   res.statusCode = 200;
-  res.json({ name: "John Doe" });
+  res.json({ nextauthurl: process.env.NEXTAUTH_URL });
 };
