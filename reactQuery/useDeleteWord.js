@@ -18,14 +18,14 @@ const useDeleteWord = () => {
       throw result;
     },
     {
-      throwOnError: true,
+      //throwOnError: true,
       onSuccess: (data, variables) => {
-        console.log("on delete success");
-        console.log(data);
-        console.log(variables);
         queryCache.setQueryData("words", (old) =>
           old.filter((w) => w._id !== variables)
         );
+        // queryCache.invalidateQueries("words", { exact: true });
+
+        queryCache.invalidateQueries(["words", variables], { exact: true });
       },
     }
   );

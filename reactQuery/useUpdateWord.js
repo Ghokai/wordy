@@ -13,17 +13,22 @@ const useUpdateWord = () => {
       });
 
       const result = await res.json();
+
       if (res.ok) {
         return result;
       }
       throw result;
     },
     {
-      throwOnError: true,
-      onSuccess: (data, variables) => {
+      //throwOnError: true,
+      onSuccess: (response, word) => {
         queryCache.setQueryData("words", (old) =>
-          old.map((w) => (w._id === variables._id ? variables : w))
+          old.map((w) => (w._id === word._id ? word : w))
         );
+        // queryCache.invalidateQueries("words", { exact: true });
+
+        //  queryCache.invalidateQueries(["words", word._id], { exact: true });
+        queryCache.setQueryData(["words", word._id], word);
       },
     }
   );

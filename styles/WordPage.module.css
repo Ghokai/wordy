@@ -52,10 +52,13 @@
     width: 100%;
   }
 }
+
 .loader {
-  height: 5px;
   width: 100%;
+  background-color: pink !important;
+  height: 25px;
 }
+
 .loader .bar {
   position: relative;
   height: 3px;
@@ -64,4 +67,18 @@
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+}
+
+.wordLink {
+  color: red;
+  cursor: pointer;
+}
+
+.wordDetails {
+  position: absolute;
+  left: 20px;
+  top: 150px;
+  width: 300px;
+  height: 150px;
+  border: 1px solid;
 }

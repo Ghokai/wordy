@@ -6,6 +6,7 @@ import useQuestion from "../../reactQuery/useQuestion";
 import QuizScore from "../../components/QuizScore";
 import QuestionHistoryFeed from "../../components/QuestionHistoryFeed";
 import useQuestionHistory from "../../state/useQuestionHistory";
+import WordCounter from "../../components/WordCounter";
 
 export default function Index() {
   const previousQuestions = useQuestionHistory((state) =>
@@ -22,6 +23,7 @@ export default function Index() {
   //isFetching
   return (
     <>
+      <WordCounter></WordCounter>
       <QuestionHistoryFeed></QuestionHistoryFeed>
       <div className={styles.questionWrapper}>
         {isLoading ? (

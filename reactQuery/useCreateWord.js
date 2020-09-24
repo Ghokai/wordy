@@ -13,13 +13,14 @@ const useCreateWord = () => {
       });
 
       const result = await res.json();
+
       if (res.ok) {
         return result;
       }
       throw result;
     },
     {
-      throwOnError: true,
+      //throwOnError: true,
       // When mutate is called:
       onMutate: (newWord) => {
         // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
@@ -27,7 +28,7 @@ const useCreateWord = () => {
 
         // Snapshot the previous value
         const previousWords = queryCache.getQueryData("words");
-        const obj = { ...newWord, _id: "" };
+        const obj = { ...newWord, _id: "temp_id" };
         // Optimistically update to the new value
         queryCache.setQueryData("words", (old) => [obj, ...old]);
 
@@ -36,22 +37,22 @@ const useCreateWord = () => {
       },
       // If the mutation fails, use the value returned from onMutate to roll back
       onError: (err, newWord, rollback) => {
-        console.log("on error");
-        console.log(err);
         rollback();
         return err;
       },
       // Always refetch after error or success:
       onSettled: () => {
-        // queryCache.invalidateQueries("words");
+        // queryCache.invalidateQueries("words", { exact: true });
+        // queryCache.refetchQueries("words", { exact: true });
       },
       onSuccess: (data, variables) => {
-        console.log("on success");
-        const previousWords = queryCache.getQueryData("words");
+        const words = queryCache.getQueryData("words");
         queryCache.setQueryData("words", [
           data,
-          ...previousWords.filter((w) => w._id !== ""),
+          ...words.filter((w) => w._id !== "temp_id"),
         ]);
+
+        // queryCache.refetchQueries("words", { exact: true });
       },
     }
   );

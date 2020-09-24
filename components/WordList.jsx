@@ -1,17 +1,23 @@
 import { useState } from "react";
+
 import WordForm from "./WordForm";
 import useWords from "../reactQuery/useWords";
 import useDeleteWord from "../reactQuery/useDeleteWord";
 import useUpdateWord from "../reactQuery/useUpdateWord";
+import useSelectedWordId from "../state/useSelectedWordId";
 
 import styles from "../styles/WordPage.module.css";
 
 const WordListItem = ({ word }) => {
-  const [deleteWord, { isLoading }] = useDeleteWord();
+  const [deleteWord, { isLoading: isDeleteLoading }] = useDeleteWord();
   const [updateWord, { isLoading: isUpdateLoading }] = useUpdateWord();
 
   const [editMode, setEditMode] = useState(false);
   const [wordState, setWordState] = useState(word);
+
+  const setSelectedWordId = useSelectedWordId(
+    (state) => state.setSelectedWordId
+  );
 
   const onChangeHandler = (e) => {
     const name = event.target.name;
@@ -33,7 +39,10 @@ const WordListItem = ({ word }) => {
   };
 
   return (
-    <tr className={word._id === "" ? styles.wordLoading : ""}>
+    <tr
+      className={word._id === "temp_id" ? styles.wordLoading : ""}
+      data-id={word._id}
+    >
       <td>
         {editMode ? (
           <input
@@ -42,7 +51,12 @@ const WordListItem = ({ word }) => {
             onChange={onChangeHandler}
           />
         ) : (
-          <span>{wordState.word}</span>
+          <a
+            onClick={() => setSelectedWordId(wordState._id)}
+            className={styles.wordLink}
+          >
+            {wordState.word}
+          </a>
         )}
       </td>
       <td>
@@ -57,8 +71,12 @@ const WordListItem = ({ word }) => {
         )}
       </td>
       <td>
-        {editMode && <button onClick={updateHandler}>Update</button>}
-        {!editMode && wordState._id !== "" && (
+        {editMode && (
+          <button onClick={updateHandler} disabled={isUpdateLoading}>
+            {isUpdateLoading ? "Updating..." : "Update"}
+          </button>
+        )}
+        {!editMode && wordState._id !== "temp_id" && (
           <button
             className={styles.editButton}
             onClick={() => setEditMode(true)}
@@ -68,13 +86,17 @@ const WordListItem = ({ word }) => {
         )}
       </td>
       <td>
-        {editMode && <button onClick={cancelHandler}>Cancel</button>}
-        {!editMode && wordState._id !== "" && (
+        {editMode && (
+          <button disabled={isUpdateLoading} onClick={cancelHandler}>
+            Cancel
+          </button>
+        )}
+        {!editMode && wordState._id !== "temp_id" && (
           <button
-            disabled={isLoading}
+            disabled={isDeleteLoading}
             onClick={() => deleteWord(wordState._id)}
           >
-            {isLoading ? "Deleting..." : "Delete"}
+            {isDeleteLoading ? "Deleting..." : "Delete"}
           </button>
         )}
       </td>
